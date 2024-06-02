@@ -152,7 +152,15 @@ public class UserTrips extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Trip t = tripList.get(jComboBox1.getSelectedIndex());
         if (pn.getSaldo() < t.getHarga()) {
-            JOptionPane.showMessageDialog(rootPane, "Saldo tidak cukup");
+            JOptionPane.showMessageDialog(rootPane, "Saldo tidak cukup.");
+            return;
+        }
+        if ( t.getKendaraan() instanceof Minibus && ((Minibus) t.getKendaraan()).getSisaKursi() == ((Minibus) t.getKendaraan()).getKapasitas() ) {
+            JOptionPane.showMessageDialog(rootPane, "Sudah penuh.");
+            return;
+        }
+        if ( t.getKendaraan() instanceof Elf && ((Elf) t.getKendaraan()).getSisaKursi() == ((Elf) t.getKendaraan()).getKapasitas() ) {
+            JOptionPane.showMessageDialog(rootPane, "Sudah penuh.");
             return;
         }
         int response = JOptionPane.showConfirmDialog(rootPane, "Order " + t.generateVerbose() + "?", "Order", JOptionPane.YES_NO_OPTION);
@@ -176,6 +184,36 @@ public class UserTrips extends javax.swing.JFrame {
                         long saldo = Long.parseLong(data[3]);
                         saldo -= t.getHarga();
                         data[3] = String.valueOf(saldo);
+                        lines.set(i, String.join("$", data) + "$");
+                        break;
+                    }
+                }
+
+                try (PrintWriter writer = new PrintWriter(file)) {
+                    for (String updatedLine : lines) {
+                        writer.println(updatedLine);
+                    }
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            fileName = "trip.txt";
+            targetId = t.generateCode();
+
+            try {
+                File file = new File(fileName);
+                Scanner scanner = new Scanner(file);
+                
+                List<String> lines = Files.readAllLines(Paths.get(fileName));
+                scanner.close();
+
+                for (int i = 0; i < lines.size(); i++) {
+                    String line = lines.get(i);
+                    String[] data = line.split("\\$");
+                    if (data[7].equals(targetId)) {
+                        data[5] = String.valueOf(Integer.parseInt(data[5]) + 1 );
                         lines.set(i, String.join("$", data) + "$");
                         break;
                     }

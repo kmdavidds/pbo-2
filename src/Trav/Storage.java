@@ -193,8 +193,9 @@ public class Storage {
                 String tanggal = data[2];
                 int harga = Integer.parseInt(data[3]);
                 Kendaraan kendaraan = getKendaraan(data[4]);
-                Driver driver = getDriver(data[5]);
-                Trip trip = new Trip(asal, tujuan, tanggal, harga, kendaraan, driver);
+                int sisaKursi = Integer.parseInt(data[5]);
+                Driver driver = getDriver(data[6]);
+                Trip trip = new Trip(asal, tujuan, tanggal, harga, kendaraan, sisaKursi, driver);
                 t.add(trip);
             }
             scanner.close();

@@ -1,1 +1,3 @@
-Elf1$N 5555 VH$true$
+Elf_1$DK 2222 PX$false$
+Elf_2$DK 7777 OY$false$
+Elf_3$DK 7979 WO$true$

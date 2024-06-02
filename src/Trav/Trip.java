@@ -16,6 +16,7 @@ public class Trip {
     private Kendaraan kendaraan;
     private Driver driver;
     private String kode;
+    private int kursi;
 
     public Trip(String asal, String tujuan, String tanggal, int harga, Kendaraan kendaraan, Driver driver) {
         this.asal = asal;
@@ -23,6 +24,17 @@ public class Trip {
         this.tanggal = tanggal;
         this.harga = harga;
         this.kendaraan = kendaraan;
+        this.driver = driver;
+        this.kode = generateCode();
+    }
+
+    public Trip(String asal, String tujuan, String tanggal, int harga, Kendaraan kendaraan, int kursi, Driver driver) {
+        this.asal = asal;
+        this.tujuan = tujuan;
+        this.tanggal = tanggal;
+        this.harga = harga;
+        this.kendaraan = kendaraan;
+        this.kursi = kursi;
         this.driver = driver;
         this.kode = generateCode();
     }
@@ -56,9 +68,9 @@ public class Trip {
         // res += "[" + driver.getNama() + "] ";
         res += " (Kapasitas: ";
         if (kendaraan instanceof Minibus) {
-            res += ((Minibus) kendaraan).getSisaKursi() + "/" + ((Minibus) kendaraan).getKapasitas();
+            res += kursi + "/" + ((Minibus) kendaraan).getKapasitas();
         } else if (kendaraan instanceof Elf) {
-            res += ((Elf) kendaraan).getSisaKursi() + "/" + ((Elf) kendaraan).getKapasitas();
+            res += kursi + "/" + ((Elf) kendaraan).getKapasitas();
         } 
         res += ")";
         return res;
@@ -118,5 +130,13 @@ public class Trip {
 
     public void setKode(String kode) {
         this.kode = kode;
+    }
+
+    public int getKursi() {
+        return kursi;
+    }
+
+    public void setKursi(int kursi) {
+        this.kursi = kursi;
     }
 }

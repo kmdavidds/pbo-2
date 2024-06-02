@@ -1,3 +1,8 @@
-Asep$100000$true$
-Bobi$200000$false$
-Coki$300000$true$
+Agus$100000$false$
+Boy$200000$false$
+Cahyo$300000$false$
+Dono$400000$false$
+Eko$500000$false$
+Farhan$600000$false$
+Galih$700000$false$
+Zefri$50000$true$

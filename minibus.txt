@@ -1,2 +1,2 @@
-Minibus1$DK 1234 VW$true$
-Minibus2$DK 7890 VH$false
+Minibus_1$N 5555 VW$false$
+Minibus_2$N 1234 VW$false$
