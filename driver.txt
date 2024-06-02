@@ -1,0 +1,3 @@
+Asep$100000$true$
+Bobi$200000$false$
+Coki$300000$true$

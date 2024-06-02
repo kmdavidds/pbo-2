@@ -1,0 +1,2 @@
+Minibus1$DK 1234 VW$true$
+Minibus2$DK 7890 VH$false
